@@ -5,7 +5,8 @@ var app = express();
 app.use(morgan('combined'));
 
 
-var articleone = {
+var article = {
+  'article-one': {  
   title: 'charan article-one',
   heading: 'Article-one',
   date: 'aug 19 2017',
@@ -18,8 +19,40 @@ var articleone = {
             </p>
             <p>
                 I thought nptel cousrses are easy, but it's tougher than what i thought
+            </p> `
+      
+  },
+           
+  'article-two': {
+      title: 'charan article-two',
+      heading: 'Article-two',
+      date: 'aug 19 2017',
+      content: `
+            <p>
+                Trying to code my self
             </p>
-           `
+            <p>
+                 Excited to code my self
+            </p>
+            <p>
+               Good to code myself 
+            </p>`
+            },
+  'article-three': { 
+  title: 'charan article-three',
+      heading: 'Article-three',
+      date: 'aug 19 2017',
+      content: `
+            <p>
+                    Getting practiced with code
+            </p>
+            <p>
+                    Feeling cool with coding
+            </p>
+            <p>
+                    End of article-three
+            </p>`
+            }
 };
 
 function createTemplate (data) {
@@ -61,15 +94,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res){
-    res.send(createTemplate(articleone));
+app.get('/:articleName', function (req, res){
+var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
    });
-app.get('/article-two', function (req, res){
-    res.sendFile(path.join(__dirname, 'ui', 'panda article-two.html'));
-});
-app.get('/article-three', function (req, res){ 
-     res.sendFile(path.join(__dirname, 'ui', 'panda article-three.html'));
-});
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
