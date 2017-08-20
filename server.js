@@ -4,12 +4,65 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+
+var articleone = {
+  title: 'charan article-one',
+  heading: 'Article-one',
+  date: 'aug 19 2017',
+  content: `
+            <p>
+                This is the article for my first article
+            </p>
+            <p>
+                Am not gud at coding, from here after i ll learn to code
+            </p>
+            <p>
+                I thought nptel cousrses are easy, but it's tougher than what i thought
+            </p>
+           `
+};
+
+function createTemplate (data) {
+    var title = data.title;
+    var date = data.date;
+    var heading = data.heading;
+    var content = data.content; 
+var htmlTemplate= `
+    <html>
+    <head>
+        <title>
+            ${title}
+        </title>
+         <meta name="viewport" content="width=device-width, intial-scale=1" />
+        <link href="/ui/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <hr/>
+        <h3>
+            ${heading}
+        </h3>
+        <div>
+            ${date}
+        </div>
+        <div>
+            ${content}
+        </div>
+        </div>
+    </body>
+</html>
+`;
+return htmlTemplate;
+}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one', function (req, res){
-    res.sendFile(path.join(__dirname,  'panda article-one.html'));
+    res.send(createTemplate(articleone));
    });
 app.get('/article-two', function (req, res){
     res.sendFile(path.join(__dirname, 'ui', 'panda article-two.html'));
