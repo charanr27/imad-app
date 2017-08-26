@@ -1,7 +1,3 @@
-console.log('Loaded!');
-//change the text using main-text
-var element = document.getElementById('main-text');
-element.innerHTML = 'New Value';
 //to move madi image
 var img = document.getElementById('madi');
 var marginLeft = 0;
