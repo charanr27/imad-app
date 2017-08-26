@@ -19,4 +19,4 @@ button.oneclick = function () {
     var span = document.getElementById('count');
     span.innerHTML = counter.toString();
     
-}
+};
